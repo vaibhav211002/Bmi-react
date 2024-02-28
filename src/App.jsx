@@ -6,7 +6,7 @@ function App() {
     const [height,setHeightValue] = useState('');
     const [weight,setweightValue] = useState('');
     const [initialbmi , setbmi] = useState('');
-    const [text,updatedtext] = useState('Enter The Height And Weight !!')
+    const [text,updatedtext] = useState('')
 
     const HeightValue = (e) =>{
         setHeightValue(e.target.value)
@@ -24,11 +24,11 @@ function App() {
     const handlesubmit = (e) =>{
         e.preventDefault();
         console.log(height,"  ",weight," ",initialbmi);
-        const bmi = weight/(height/100*height/100);
+        const bmi = Math.round((weight/(height/100*height/100))*10)/10;
         setbmi(bmi)
         setHeightValue('')
         setweightValue('')
-        // console.log(initialbmi);
+
         let message  = '';
 
         if (bmi < 18.5) { 
@@ -46,19 +46,20 @@ function App() {
     
 
   return (
-    <div>
-        <h1>BMI CALCULATOR</h1>
-        <form onSubmit={handlesubmit}>
-            <input value={height} type='number' placeholder='ENTER YOUR HEIGHT' onChange={HeightValue}/>
-            <input value={weight} type='number' placeholder='ENTER YOUR WEIGHT' onChange={weightValue}/>
-            <button type='submit'>Submit</button> 
-        </form>
-
-        <h2>Your BMI is {initialbmi}</h2>
-
-        <h1>{text}</h1>
-       
-    </div>
+<div className="container">
+            <h1>BMI CALCULATOR</h1>
+            <form onSubmit={handlesubmit}>
+                <input className="input" value={height} type='number' placeholder='ENTER YOUR HEIGHT' onChange={HeightValue}/>
+                <input className="input" value={weight} type='number' placeholder='ENTER YOUR WEIGHT' onChange={weightValue}/>
+                <button className="button" type='submit'>Submit</button> 
+            </form>
+            {initialbmi && text && (
+                <div className="result"> 
+                    <p>Your BMI: {initialbmi}</p> 
+                    <p>Result: {text}</p> 
+                </div> 
+            )}
+        </div>
   )
 }
 
