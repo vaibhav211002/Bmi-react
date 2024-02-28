@@ -49,8 +49,8 @@ function App() {
 <div className="container">
             <h1>BMI CALCULATOR</h1>
             <form onSubmit={handlesubmit}>
-                <input className="input" value={height} type='number' placeholder='ENTER YOUR HEIGHT' onChange={HeightValue}/>
-                <input className="input" value={weight} type='number' placeholder='ENTER YOUR WEIGHT' onChange={weightValue}/>
+                <input className="input" value={height} type='number' placeholder='Enter your height in cm' onChange={HeightValue}/>
+                <input className="input" value={weight} type='number' placeholder='Enter your weight in Kgs' onChange={weightValue}/>
                 <button className="button" type='submit'>Submit</button> 
             </form>
             {initialbmi && text && (
